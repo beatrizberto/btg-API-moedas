@@ -25,10 +25,12 @@ public class ClienteServico {
 
     public ClienteResponse buscarPorCpf(String cpf) {
         Optional<Cliente> clienteResponse =  clienteRepositorio.findByCpf(cpf);
+
         if(clienteResponse.isPresent()){
             return ClienteConversor.toResponse(clienteResponse.get());
         } else {
-            throw new RuntimeException("Cliente não encontrado");
+            //throw new RuntimeException("Cliente não encontrado");
+            return null;
         }
     }
 
@@ -36,6 +38,10 @@ public class ClienteServico {
         Cliente cliente = ClienteConversor.toEntity(clienteRequest);
         cliente.setId(id);
         return ClienteConversor.toResponse(clienteRepositorio.save(cliente));
+    }
+
+    public void deletarCliente(Integer id) {
+        clienteRepositorio.deleteById(id);
     }
 
 }
