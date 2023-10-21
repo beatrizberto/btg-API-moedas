@@ -32,4 +32,10 @@ public class ClienteServico {
         }
     }
 
+    public ClienteResponse editarCliente(Integer id, ClienteRequest clienteRequest) {
+        Cliente cliente = ClienteConversor.toEntity(clienteRequest);
+        cliente.setId(id);
+        return ClienteConversor.toResponse(clienteRepositorio.save(cliente));
+    }
+
 }
