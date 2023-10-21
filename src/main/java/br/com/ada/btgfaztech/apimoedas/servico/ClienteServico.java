@@ -8,6 +8,8 @@ import br.com.ada.btgfaztech.apimoedas.utils.ClienteConversor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClienteServico {
 
@@ -19,8 +21,15 @@ public class ClienteServico {
         Cliente novoCliente = ClienteConversor.toEntity(clienteRequest);
 
         return ClienteConversor.toResponse(clienteRepositorio.save(novoCliente));
+    }
 
-
+    public ClienteResponse buscarPorCpf(String cpf) {
+        Optional<Cliente> clienteResponse =  clienteRepositorio.findByCpf(cpf);
+        if(clienteResponse.isPresent()){
+            return ClienteConversor.toResponse(clienteResponse.get());
+        } else {
+            throw new RuntimeException("Cliente não encontrado");
+        }
     }
 
 }

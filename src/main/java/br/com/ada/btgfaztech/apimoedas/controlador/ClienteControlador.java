@@ -5,10 +5,7 @@ import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
 import br.com.ada.btgfaztech.apimoedas.servico.ClienteServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -26,6 +23,11 @@ public class ClienteControlador {
         ClienteResponse cliente = clienteServico.criarCliente(clienteRequest);
         return ResponseEntity.created(URI.create("/cliente/" + cliente.getId())).body(cliente);
 
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<ClienteResponse> buscarPorCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok(clienteServico.buscarPorCpf(cpf));
     }
 
 
