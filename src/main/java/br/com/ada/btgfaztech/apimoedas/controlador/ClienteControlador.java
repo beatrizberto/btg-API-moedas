@@ -2,6 +2,7 @@ package br.com.ada.btgfaztech.apimoedas.controlador;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
+import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
 import br.com.ada.btgfaztech.apimoedas.servico.ClienteServico;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,23 @@ public class ClienteControlador {
 
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<ClienteResponse> buscarPorCpf(@PathVariable String cpf) {
-        return ResponseEntity.ok(clienteServico.buscarPorCpf(cpf));
+        ClienteResponse clienteResponse = clienteServico.buscarPorCpf(cpf);
+
+        if(clienteResponse == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(clienteResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ClienteResponse> editarCliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest) {
         return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarCliente(@PathVariable Integer id) {
+        clienteServico.deletarCliente(id);
     }
 
 }
