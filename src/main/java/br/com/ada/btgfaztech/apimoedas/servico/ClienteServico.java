@@ -1,21 +1,26 @@
 package br.com.ada.btgfaztech.apimoedas.servico;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteRequest;
+import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
 import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
+import br.com.ada.btgfaztech.apimoedas.repositorio.IClienteRepositorio;
+import br.com.ada.btgfaztech.apimoedas.utils.ClienteConversor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteServico {
 
-    public Cliente criarCliente(ClienteRequest clienteRequest) {
-        Cliente novoCliente = new Cliente();
-        novoCliente.setCpf(clienteRequest.getCpf());
-        novoCliente.setNome(clienteRequest.getNome());
-        novoCliente.setDataNascimento(clienteRequest.getDataNascimento());
-        novoCliente.setEstadoCivil(clienteRequest.getEstadoCivil());
-        novoCliente.setSexo(clienteRequest.getSexo());
+    @Autowired
+    IClienteRepositorio clienteRepositorio;
 
-        return null;
+
+    public ClienteResponse criarCliente(ClienteRequest clienteRequest) {
+        Cliente novoCliente = ClienteConversor.toEntity(clienteRequest);
+
+        return ClienteConversor.toResponse(clienteRepositorio.save(novoCliente));
+
+
     }
 
 }
