@@ -2,6 +2,7 @@ package br.com.ada.btgfaztech.apimoedas.controlador.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class OrdemCompraResponse {
 
     private Integer       idCompra;
@@ -21,4 +23,5 @@ public class OrdemCompraResponse {
     private BigDecimal    valorCotacao;
     private BigDecimal    valorTotalOperacao;
     private String        numeroAgenciaRetirada;
+
 }
