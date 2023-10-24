@@ -1,5 +1,7 @@
 package br.com.ada.btgfaztech.apimoedas.controlador.dto;
 
+import br.com.ada.btgfaztech.apimoedas.modelo.CotacaoMoeda;
+import br.com.ada.btgfaztech.apimoedas.servico.CotacaoMoedaServico;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,19 +10,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class ApiCotacaoResponse {
-
-    private String code;
-    private String codein;
-    private String name;
-    private String high;
-    private String low;
-    private String varBid;
-    private String pctChange;
-    private String bid;
-    private BigDecimal ask;
-    private String timestamp;
-    private String create_date;
-
-
-
+    private CotacaoMoeda USDBRL;
+    private CotacaoMoeda EURBRL;
 }

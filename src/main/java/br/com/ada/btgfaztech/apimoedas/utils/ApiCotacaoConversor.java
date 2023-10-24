@@ -7,9 +7,13 @@ public class ApiCotacaoConversor {
     public static OrdemCompraResponse toOrdemCompraResponse(ApiCotacaoResponse apiCotacaoResponse)
     {
         OrdemCompraResponse ordemCompraResponse = new OrdemCompraResponse();
-        ordemCompraResponse.setTipoMoeda(apiCotacaoResponse.getCode());
-        ordemCompraResponse.setValorCotacao(apiCotacaoResponse.getAsk());
-
+//        ordemCompraResponse.setTipoMoeda(apiCotacaoResponse.getCode());
+//        ordemCompraResponse.setValorCotacao(apiCotacaoResponse.getAsk());
+//
         return ordemCompraResponse;
     }
 }
+
+
+
+

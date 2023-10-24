@@ -4,6 +4,7 @@ import br.com.ada.btgfaztech.apimoedas.repositorio.IClienteRepositorio;
 import br.com.ada.btgfaztech.apimoedas.repositorio.IOrdemCompraRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class OrdemCompraServico {
@@ -14,6 +15,4 @@ public class OrdemCompraServico {
     @Autowired
     private IOrdemCompraRepositorio ordemCompraRepositorio;
 
-//    public OrdemCompraResponse criarOrdemCompra(OrdemCompraRequest ordemCompraRequest)
-//    }
 }
