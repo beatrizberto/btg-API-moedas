@@ -63,6 +63,8 @@ public class CotacaoMoedaServico {
         }
     }
 }
+
+
 //public List<CotacaoMoeda> obterCotacaoMoeda(String moeda) throws IOException {
 //    String url = baseUrl + "/last/" + moeda;
 //

@@ -27,4 +27,16 @@ public class OrdemCompraControlador {
         Map<String, CotacaoMoeda> cotacoes = cotacaoMoedaServico.obterCotacaoMoeda(moeda);
         return ResponseEntity.ok(cotacoes);
     }
+
+    @PostMapping("/moeda/usd")
+    public ResponseEntity<Map<String, CotacaoMoeda>> obterValorCotacaoComPost(@RequestBody Map<String, Integer> request) throws IOException {
+        Integer valor = request.get("valor");
+        // Agora, você pode usar o valor para fazer o que deseja.
+
+        Map<String, CotacaoMoeda> cotacoes = cotacaoMoedaServico.obterCotacaoMoeda("usd");
+
+        return ResponseEntity.ok(cotacoes);
+    }
+
+
 }
