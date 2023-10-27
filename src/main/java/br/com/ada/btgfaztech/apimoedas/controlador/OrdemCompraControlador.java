@@ -46,5 +46,24 @@ public class OrdemCompraControlador {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<OrdemCompraResponse> buscarPorId(@PathVariable Integer id) {
+        OrdemCompraResponse ordemCompraResponse = ordemCompraServico.buscarPorId(id);
+
+        if(ordemCompraResponse == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ordemCompraResponse);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> cancelarOrdemDeCompra(@PathVariable Integer id) {
+        OrdemCompraResponse ordemCompraResponse = ordemCompraServico.buscarPorId(id);
+        if (ordemCompraResponse == null) {
+            return ResponseEntity.notFound().build();
+        }
+        ordemCompraServico.cancelarOrdemDeCompra(id);
+        return ResponseEntity.ok("Ordem de compra cancelada com sucesso.");
+    }
 
 }

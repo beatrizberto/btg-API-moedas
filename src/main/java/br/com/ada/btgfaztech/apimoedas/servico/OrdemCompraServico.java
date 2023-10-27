@@ -1,5 +1,6 @@
 package br.com.ada.btgfaztech.apimoedas.servico;
 
+import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.OrdemCompraRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.OrdemCompraResponse;
 import br.com.ada.btgfaztech.apimoedas.controlador.exception.ValidaMoedaErro;
@@ -54,6 +55,20 @@ public class OrdemCompraServico {
         OrdemCompra ordemCompra = OrdemCompraConversor.toEntity(ordemCompraRequest, valorCotacao, valorTotal, cliente.get());
 
         return OrdemCompraConversor.toResponse(ordemCompraRepositorio.save(ordemCompra));
+
         
     }
+
+    public OrdemCompraResponse buscarPorId(Integer id) {
+        Optional<OrdemCompra> ordemCompraResponse =  ordemCompraRepositorio.findById(id);
+
+        if(ordemCompraResponse.isPresent()){
+            return OrdemCompraConversor.toResponse(ordemCompraResponse.get());
+        } else {
+            //throw new RuntimeException("Ordem de compra não encontrada");
+            return null;
+        }
+    }
+
+    public void cancelarOrdemDeCompra(Integer id) {ordemCompraRepositorio.deleteById(id);}
 }
