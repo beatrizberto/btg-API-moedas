@@ -25,14 +25,6 @@ Este projeto consome uma API externa para obter cotações de moedas estrangeira
 - [Lombok](https://projectlombok.org/): Biblioteca para reduzir a verbosidade do código Java.
 - [H2 Database](https://www.h2database.com/html/main.html): Banco de dados em memória para desenvolvimento e teste.
 
-Abra o arquivo `application.properties` e configure as propriedades do banco de dados H2:
-```properties
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=password
-spring.h2.console.enabled=true
-
 ## Executando o Projeto
 
 Clone o repositório do projeto.
@@ -51,21 +43,23 @@ PUT /cliente/{id}: Atualiza informações do cliente existente.
 DELETE /cliente/{id}: Exclui um cliente existente.
 POST /ordens-compra: Cria uma nova ordem de compra de moeda estrangeira.
 
-Protótipo de Tela
-Confira o protótipo de tela do projeto no .......
+## Protótipo de Tela
 
-Participantes
+Confira o protótipo de tela do projeto no [Inserir Link do Protótipo de Tela Aqui]. 
 
-Beatriz Bergo
-Bruna Torres
-Fernanda Soares
-Jessica Alves
-Jessica Lima
-Luciana Oliveira
+## Participantes
+
+- Beatriz Bergo
+- Bruna Torres
+- Fernanda Soares
+- Jessica Alves
+- Jessica Lima
+- Luciana Oliveira
 
 ## Gerenciamento de Projeto
 
 Acompanhamos o progresso deste projeto utilizando o Trello.
-https://trello.com/b/n9V90o5R/projeto-api-moedas-m%C3%B3dulo-iv
+[Trello - Quadro do Projeto](https://trello.com/b/n9V90o5R/projeto-api-moedas-m%C3%B3dulo-iv)
+
 
 
