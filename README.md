@@ -38,9 +38,13 @@ Acesse a API através dos endpoints definidos para realizar operações CRUD e c
 Endpoints
 
 POST /cliente: Cria um novo cliente.
+
 GET /cliente/cpf/{cpf}: Obtém informações do cliente com base no CPF.
+
 PUT /cliente/{id}: Atualiza informações do cliente existente.
+
 DELETE /cliente/{id}: Exclui um cliente existente.
+
 POST /ordens-compra: Cria uma nova ordem de compra de moeda estrangeira.
 
 ## Protótipo de Tela
