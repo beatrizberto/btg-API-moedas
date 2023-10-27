@@ -26,7 +26,6 @@ Este projeto consome uma API externa para obter cotações de moedas estrangeira
 - [H2 Database](https://www.h2database.com/html/main.html): Banco de dados em memória para desenvolvimento e teste.
 
 Abra o arquivo `application.properties` e configure as propriedades do banco de dados H2:
-
 ```properties
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
@@ -34,7 +33,7 @@ spring.datasource.username=sa
 spring.datasource.password=password
 spring.h2.console.enabled=true
 
-Executando o Projeto
+## Executando o Projeto
 
 Clone o repositório do projeto.
 
