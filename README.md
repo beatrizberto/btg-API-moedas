@@ -1,33 +1,72 @@
-# btg-API-moedas
+# API de Compra de Moedas
 
-Realize a implementação de uma API que gera uma ordem de compra das moedas estrangeiras USD (dólar) e EUR (euro).
+Este é um projeto que implementa uma API que gera uma ordem de compra das moedas estrangeiras USD (dólar) e EUR (euro). A API permite que os clientes criem contas e solicitem ordens de compra dessas moedas.
 
-Para que o cliente realize a compra, primeiro ele deve se cadastrar no sistema informando o nome, cpf, data de nascimento, estado civil e sexo. Para tanto, um microsserviço de cadastro deve ser criado, gerando um id de cliente ao final de um processamento bem sucedido. Também deverá ser criado um endpoint de consulta do cliente pelo seu cpf.
+## API Externa de Cotação de Moedas
 
-Após efetuar o cadastro, o cliente pode registrar a ordem de compra, que consiste em informar seu cpf, o tipo de moeda (USD ou EUR), o valor em moeda estrangeira e o número da agência (4 dígitos) que ocorrerá a retirada.
+Este projeto consome uma API externa para obter cotações de moedas estrangeiras. A API externa usada é a [Awesome API de Economia](https://economia.awesomeapi.com.br/). Ela fornece cotações em tempo real para várias moedas, incluindo o dólar (USD) e o euro (EUR). A aplicação realiza chamadas apropriadas a esta API para obter cotações atualizadas das moedas.
 
-Também deverá ser criada uma API para calcular a cotação da moeda, a qual deve chamar a API externa https://economia.awesomeapi.com.br/ informando a sigla da moeda desejada (https://economia.awesomeapi.com.br/USD/ ou https://economia.awesomeapi.com.br/EUR/).. "‌")
+### URLs da API externa:
 
-Se o cliente tentar comprar outra moeda que não USD ou EUR, deverá ser lançada uma exceção.
+- [Cotação do Dólar (USD)](https://economia.awesomeapi.com.br/USD/)
+- [Cotação do Euro (EUR)](https://economia.awesomeapi.com.br/EUR/)
 
-A API irá calcular o valor total com base na cotação da moeda multiplicada pelo valor desejado de compra. Ao final de uma requisição bem sucedida, deverá ser retornado o request body abaixo:
+## Requisitos
 
-Response 201
+- Java SDK 17 ou superior
+- Maven
+- Dependências do Maven (gerenciadas pelo arquivo `pom.xml`)
 
-{
-"id_compra": 1,
-"id_cliente": 1,
-"cpf_cliente": "43488428095",
-"dataSolicitacao": "2021-08-27T16:11:23.866",
-"tipo_moeda": "EUR",
-"valor_moeda_estrangeira": 100.0,
-"valor_cotacao": 6.5857,
-"valor_total_operacao": 658.57,
-"numero_agencia_retirada": "7057"
-}
+## Dependências
 
-A escolha do banco de dados é livre, ficando a seu critério a utilização de banco de dados em memória ou algum outro SGBD. Utilize os conceitos de arquitetura, SOLID e Design Patterns apresentados no módulo.
+- [Spring Boot](https://spring.io/projects/spring-boot): Framework para criação de aplicativos Java.
+- [Spring Boot Starter Data JPA](https://spring.io/guides/gs/accessing-data-jpa/): Starter para integração com o Spring Data JPA.
+- [Spring Boot Starter Web](https://spring.io/guides/gs/spring-boot/): Starter para criação de aplicativos da web com o Spring Boot.
+- [Lombok](https://projectlombok.org/): Biblioteca para reduzir a verbosidade do código Java.
+- [H2 Database](https://www.h2database.com/html/main.html): Banco de dados em memória para desenvolvimento e teste.
 
-Considere utilizar ferramentas de gerenciamento apresentadas no módulo, como Kanban e controle por Sprints.
+Abra o arquivo `application.properties` e configure as propriedades do banco de dados H2:
 
-doc da api: API de Cotações
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.h2.console.enabled=true
+
+Executando o Projeto
+
+Clone o repositório do projeto.
+
+Abra o projeto em sua IDE.
+
+Execute a aplicação Spring Boot.
+
+Acesse a API através dos endpoints definidos para realizar operações CRUD e criar ordens de compra.
+
+Endpoints
+
+POST /cliente: Cria um novo cliente.
+GET /cliente/cpf/{cpf}: Obtém informações do cliente com base no CPF.
+PUT /cliente/{id}: Atualiza informações do cliente existente.
+DELETE /cliente/{id}: Exclui um cliente existente.
+POST /ordens-compra: Cria uma nova ordem de compra de moeda estrangeira.
+
+Protótipo de Tela
+Confira o protótipo de tela do projeto no .......
+
+Participantes
+
+Beatriz Bergo
+Bruna Torres
+Fernanda Soares
+Jessica Alves
+Jessica Lima
+Luciana Oliveira
+
+## Gerenciamento de Projeto
+
+Acompanhamos o progresso deste projeto utilizando o Trello.
+https://trello.com/b/n9V90o5R/projeto-api-moedas-m%C3%B3dulo-iv
+
+
