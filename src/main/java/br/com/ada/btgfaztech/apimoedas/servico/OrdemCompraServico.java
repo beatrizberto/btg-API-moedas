@@ -35,8 +35,10 @@ public class OrdemCompraServico {
         //buscando cotacao
         String moeda = ordemCompraRequest.getTipoMoeda();
         CotacaoMoeda cotacao = cotacaoMoedaServico.obterCotacaoMoeda(moeda);
+
         if(cotacao == null) {
-            throw new ValidaMoedaErro(moeda);
+            System.out.println("testestestestes");
+            throw new ValidaMoedaErro();
         }
 
         BigDecimal valorCotacao = cotacao.getAsk();
@@ -47,13 +49,8 @@ public class OrdemCompraServico {
         //buscando cliente
         Optional<Cliente> cliente = clienteRepositorio.findByCpf(ordemCompraRequest.getCpf());
         if(!cliente.isPresent()) {
-            throw new RuntimeException();
+            return null;
         }
-
-
-
-
-
         OrdemCompra ordemCompra = OrdemCompraConversor.toEntity(ordemCompraRequest, valorCotacao, valorTotal, cliente.get());
 
         return OrdemCompraConversor.toResponse(ordemCompraRepositorio.save(ordemCompra));

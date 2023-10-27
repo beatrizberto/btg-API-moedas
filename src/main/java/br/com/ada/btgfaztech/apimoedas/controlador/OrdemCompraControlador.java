@@ -39,10 +39,10 @@ public class OrdemCompraControlador {
             OrdemCompraResponse ordemCompraResponse = ordemCompraServico.criarOrdemCompra(ordemCompraRequest);
             return ResponseEntity.created(URI.create("/ordens-compra/" + ordemCompraResponse.getIdCompra())).body(ordemCompraResponse);
       } catch (ValidaMoedaErro ex) {
-           return ResponseEntity.badRequest().body(new OdemCompraErrorMensagem(ex.getMessage()));
+           return ResponseEntity.badRequest().body(ex.getMessage());
        }
-        catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new OdemCompraErrorMensagem("Por favor, escolha uma moeda do tipo USD ou EUR"));
+       catch (RuntimeException ex) {
+            return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
 

@@ -1,5 +1,6 @@
 package br.com.ada.btgfaztech.apimoedas.servico;
 
+import br.com.ada.btgfaztech.apimoedas.controlador.exception.ValidaMoedaErro;
 import br.com.ada.btgfaztech.apimoedas.modelo.CotacaoMoeda;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,8 +25,15 @@ public class CotacaoMoedaServico {
 
     public CotacaoMoeda obterCotacaoMoeda(String moeda) {
         String url = baseUrl + "/last/" + moeda;
-        ResponseEntity<Map<String, CotacaoMoeda>> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, CotacaoMoeda>>() {
-        });
+        ResponseEntity<Map<String, CotacaoMoeda>> response;
+
+        try {
+            response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, CotacaoMoeda>>() {
+            });
+
+        } catch (RuntimeException ex) {
+            throw new ValidaMoedaErro();
+        }
 
         if (response.getStatusCode().is2xxSuccessful() && response.hasBody()) {
             Map<String, CotacaoMoeda> cotacaoMoeda = response.getBody();
