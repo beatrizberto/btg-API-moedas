@@ -2,6 +2,7 @@ package br.com.ada.btgfaztech.apimoedas.servico;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.OrdemCompraRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.OrdemCompraResponse;
+import br.com.ada.btgfaztech.apimoedas.controlador.exception.ValidaMoedaErro;
 import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
 import br.com.ada.btgfaztech.apimoedas.modelo.CotacaoMoeda;
 import br.com.ada.btgfaztech.apimoedas.modelo.OrdemCompra;
@@ -35,7 +36,7 @@ public class OrdemCompraServico {
         String moeda = ordemCompraRequest.getTipoMoeda();
         CotacaoMoeda cotacao = cotacaoMoedaServico.obterCotacaoMoeda(moeda);
         if(cotacao == null) {
-            throw new RuntimeException();
+            throw new ValidaMoedaErro(moeda);
         }
 
         BigDecimal valorCotacao = cotacao.getAsk();
@@ -48,6 +49,10 @@ public class OrdemCompraServico {
         if(!cliente.isPresent()) {
             throw new RuntimeException();
         }
+
+
+
+
 
         OrdemCompra ordemCompra = OrdemCompraConversor.toEntity(ordemCompraRequest, valorCotacao, valorTotal, cliente.get());
 
