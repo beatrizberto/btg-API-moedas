@@ -41,15 +41,21 @@ POST /cliente: Cria um novo cliente.
 
 GET /cliente/cpf/{cpf}: Obtém informações do cliente com base no CPF.
 
+GET /cliente/id/{id}: Obtém informações do cliente com base no Id.
+
 PUT /cliente/{id}: Atualiza informações do cliente existente.
 
 DELETE /cliente/{id}: Exclui um cliente existente.
 
 POST /ordens-compra: Cria uma nova ordem de compra de moeda estrangeira.
 
+GET /ordens-compra/{id}: Obtém informações do cliente com base no ID.
+
+DELETE /ordens-compra/{id}: Cancela uma ordem de compra existente.
+
 ## Protótipo de Tela
 
-Confira o protótipo de tela do projeto no [Inserir Link do Protótipo de Tela Aqui]. 
+Confira o protótipo de tela do projeto no [Link]. 
 
 ## Participantes
 
