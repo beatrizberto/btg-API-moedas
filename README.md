@@ -59,7 +59,7 @@ Confira o protótipo de tela do projeto no [Link].
 
 ## Participantes
 
-- Beatriz Bergo
+- Beatriz Berto
 - Bruna Torres
 - Fernanda Soares
 - Jessica Alves
