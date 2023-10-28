@@ -34,6 +34,17 @@ public class ClienteServico {
         }
     }
 
+    public ClienteResponse buscarPorId(Integer id) {
+        Optional<Cliente> clienteResponse =  clienteRepositorio.findById(id);
+
+        if(clienteResponse.isPresent()){
+            return ClienteConversor.toResponse(clienteResponse.get());
+        } else {
+            //throw new RuntimeException("Cliente não encontrado");
+            return null;
+        }
+    }
+
     public ClienteResponse editarCliente(Integer id, ClienteRequest clienteRequest) {
         Cliente cliente = ClienteConversor.toEntity(clienteRequest);
         cliente.setId(id);
