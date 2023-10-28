@@ -21,7 +21,6 @@ public class ClienteControlador {
     @PostMapping
     public ResponseEntity<ClienteResponse> criarCliente(
             @RequestBody ClienteRequest clienteRequest) {
-
         ClienteResponse cliente = clienteServico.criarCliente(clienteRequest);
         return ResponseEntity.created(URI.create("/cliente/" + cliente.getId())).body(cliente);
 
@@ -31,8 +30,17 @@ public class ClienteControlador {
     public ResponseEntity<ClienteResponse> buscarPorCpf(@PathVariable String cpf) {
         ClienteResponse clienteResponse = clienteServico.buscarPorCpf(cpf);
 
-        if(clienteResponse == null)
-        {
+        if (clienteResponse == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(clienteResponse);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<ClienteResponse> buscarPorId(@PathVariable Integer id) {
+        ClienteResponse clienteResponse = clienteServico.buscarPorId(id);
+
+        if (clienteResponse == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(clienteResponse);
@@ -44,8 +52,13 @@ public class ClienteControlador {
     }
 
     @DeleteMapping("/{id}")
-    public void deletarCliente(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarCliente(@PathVariable Integer id) {
+        ClienteResponse clienteResponse = clienteServico.buscarPorId(id);
+        if (clienteResponse == null) {
+            return ResponseEntity.notFound().build();
+        }
         clienteServico.deletarCliente(id);
+        return ResponseEntity.ok("Cliente deletado com sucesso.");
     }
 
 }

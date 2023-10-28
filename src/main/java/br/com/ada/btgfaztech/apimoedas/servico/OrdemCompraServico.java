@@ -1,5 +1,7 @@
 package br.com.ada.btgfaztech.apimoedas.servico;
 
+import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteRequest;
+import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.OrdemCompraRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.OrdemCompraResponse;
 import br.com.ada.btgfaztech.apimoedas.controlador.exception.ValidaMoedaErro;
@@ -54,6 +56,47 @@ public class OrdemCompraServico {
         OrdemCompra ordemCompra = OrdemCompraConversor.toEntity(ordemCompraRequest, valorCotacao, valorTotal, cliente.get());
 
         return OrdemCompraConversor.toResponse(ordemCompraRepositorio.save(ordemCompra));
-        
+
+
     }
+
+    public OrdemCompraResponse buscarPorId(Integer id) {
+        Optional<OrdemCompra> ordemCompraResponse =  ordemCompraRepositorio.findById(id);
+
+        if(ordemCompraResponse.isPresent()){
+            return OrdemCompraConversor.toResponse(ordemCompraResponse.get());
+        } else {
+            //throw new RuntimeException("Ordem de compra não encontrada");
+            return null;
+        }
+    }
+
+
+    public OrdemCompraResponse editarOrdemCompra(Integer id, OrdemCompraRequest ordemCompraRequest) {
+        //buscando cotacao
+        String moeda = ordemCompraRequest.getTipoMoeda();
+        CotacaoMoeda cotacao = cotacaoMoedaServico.obterCotacaoMoeda(moeda);
+
+        if(cotacao == null) {
+            throw new ValidaMoedaErro();
+        }
+
+        BigDecimal valorCotacao = cotacao.getAsk();
+
+        //calculo valor total
+        BigDecimal valorTotal = valorCotacao.multiply(ordemCompraRequest.getValorMoedaEstrangeira());
+
+        //buscando cliente
+        Optional<Cliente> cliente = clienteRepositorio.findByCpf(ordemCompraRequest.getCpf());
+        if(!cliente.isPresent()) {
+            return null;
+        }
+        OrdemCompra ordemCompra = OrdemCompraConversor.toEntity(ordemCompraRequest, valorCotacao, valorTotal, cliente.get());
+        ordemCompra.setId(id);
+        return OrdemCompraConversor.toResponse(ordemCompraRepositorio.save(ordemCompra));
+    }
+
+
+
+    public void cancelarOrdemDeCompra(Integer id) {ordemCompraRepositorio.deleteById(id);}
 }
