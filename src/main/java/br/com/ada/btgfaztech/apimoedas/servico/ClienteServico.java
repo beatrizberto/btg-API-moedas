@@ -31,7 +31,6 @@ public class ClienteServico {
             throw new ClienteNaoEncontradoException("Cliente não encontrado para o CPF: " + cpf);
         }
         return ClienteConversor.toResponse(clienteResponse.get());
-
     }
 
     public ClienteResponse buscarPorId(Integer id) {
@@ -58,12 +57,10 @@ public class ClienteServico {
 
             System.out.println("Dados do cliente atualizados com sucesso.");
             return ClienteConversor.toResponse(clienteRepositorio.save(cliente));
-
         }
     }
 
     public void deletarCliente(Integer id) {
         clienteRepositorio.deleteById(id);
     }
-
 }

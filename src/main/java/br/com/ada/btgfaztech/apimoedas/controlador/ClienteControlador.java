@@ -22,7 +22,6 @@ public class ClienteControlador {
             @RequestBody ClienteRequest clienteRequest) {
         ClienteResponse cliente = clienteServico.criarCliente(clienteRequest);
         return ResponseEntity.created(URI.create("/cliente/" + cliente.getId())).body(cliente);
-
     }
 
     @GetMapping("/cpf/{cpf}")
@@ -45,7 +44,6 @@ public class ClienteControlador {
             System.out.println(exception.getMessage());
             return ResponseEntity.notFound().build();
         }
-
     }
 
     @PutMapping("/id/{id}")
@@ -56,8 +54,6 @@ public class ClienteControlador {
             System.out.println(exception.getMessage());
             return ResponseEntity.notFound().build();
         }
-
-
     }
 
     @DeleteMapping("/id/{id}")
@@ -69,5 +65,4 @@ public class ClienteControlador {
         clienteServico.deletarCliente(id);
         return ResponseEntity.ok("Cliente deletado com sucesso.");
     }
-
 }

@@ -1,23 +1,16 @@
 package br.com.ada.btgfaztech.apimoedas.controlador;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.*;
-import br.com.ada.btgfaztech.apimoedas.controlador.exception.OdemCompraErrorMensagem;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.exception.ValidaMoedaErro;
 import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
-import br.com.ada.btgfaztech.apimoedas.modelo.CotacaoMoeda;
-import br.com.ada.btgfaztech.apimoedas.servico.CotacaoMoedaServico;
 import br.com.ada.btgfaztech.apimoedas.servico.OrdemCompraServico;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URI;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/ordens-compra")
@@ -64,5 +57,4 @@ public class OrdemCompraControlador {
         ordemCompraServico.cancelarOrdemDeCompra(id);
         return ResponseEntity.ok("Ordem de compra cancelada com sucesso.");
     }
-
 }
