@@ -24,7 +24,6 @@ public class Cliente {
     private String estadoCivil;
     private String sexo;
 
-    //cliente pode ter várias ordens de compra
     @OneToMany(mappedBy = "cliente")
     private List<OrdemCompra> ordensCompra;
 

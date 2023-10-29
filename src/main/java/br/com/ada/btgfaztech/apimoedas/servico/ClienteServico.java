@@ -2,6 +2,7 @@ package br.com.ada.btgfaztech.apimoedas.servico;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
+import br.com.ada.btgfaztech.apimoedas.controlador.exception.ClienteNaoEncontradoException;
 import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
 import br.com.ada.btgfaztech.apimoedas.repositorio.IClienteRepositorio;
 import br.com.ada.btgfaztech.apimoedas.utils.ClienteConversor;
@@ -24,26 +25,24 @@ public class ClienteServico {
     }
 
     public ClienteResponse buscarPorCpf(String cpf) {
-        Optional<Cliente> clienteResponse =  clienteRepositorio.findByCpf(cpf);
+        Optional<Cliente> clienteResponse = clienteRepositorio.findByCpf(cpf);
 
-        if(clienteResponse.isPresent()){
-            return ClienteConversor.toResponse(clienteResponse.get());
-        } else {
-            //throw new RuntimeException("Cliente não encontrado");
-            return null;
+        if (clienteResponse.isEmpty()) {
+            throw new ClienteNaoEncontradoException("Cliente não encontrado para o CPF: " + cpf);
         }
+        return ClienteConversor.toResponse(clienteResponse.get());
+
     }
 
     public ClienteResponse buscarPorId(Integer id) {
-        Optional<Cliente> clienteResponse =  clienteRepositorio.findById(id);
+        Optional<Cliente> clienteResponse = clienteRepositorio.findById(id);
 
-        if(clienteResponse.isPresent()){
-            return ClienteConversor.toResponse(clienteResponse.get());
-        } else {
-            //throw new RuntimeException("Cliente não encontrado");
-            return null;
+        if (clienteResponse.isEmpty()) {
+            throw new ClienteNaoEncontradoException("Cliente não encontrado para o ID: " + id);
         }
+        return ClienteConversor.toResponse(clienteResponse.get());
     }
+
 
     public ClienteResponse editarCliente(Integer id, ClienteRequest clienteRequest) {
         Cliente cliente = ClienteConversor.toEntity(clienteRequest);
