@@ -2,6 +2,7 @@ package br.com.ada.btgfaztech.apimoedas.controlador;
 
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
+import br.com.ada.btgfaztech.apimoedas.controlador.exception.ClienteNaoEncontradoException;
 import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
 import br.com.ada.btgfaztech.apimoedas.servico.ClienteServico;
 import org.apache.coyote.Response;
@@ -28,22 +29,25 @@ public class ClienteControlador {
 
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<ClienteResponse> buscarPorCpf(@PathVariable String cpf) {
-        ClienteResponse clienteResponse = clienteServico.buscarPorCpf(cpf);
-
-        if (clienteResponse == null) {
+        try {
+            ClienteResponse clienteResponse = clienteServico.buscarPorCpf(cpf);
+            return ResponseEntity.ok(clienteResponse);
+        } catch (ClienteNaoEncontradoException exception) {
+            System.out.println(exception.getMessage());
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(clienteResponse);
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<ClienteResponse> buscarPorId(@PathVariable Integer id) {
-        ClienteResponse clienteResponse = clienteServico.buscarPorId(id);
-
-        if (clienteResponse == null) {
+        try {
+            ClienteResponse clienteResponse = clienteServico.buscarPorId(id);
+            return ResponseEntity.ok(clienteResponse);
+        } catch (ClienteNaoEncontradoException exception) {
+            System.out.println(exception.getMessage());
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(clienteResponse);
+
     }
 
     @PutMapping("/{id}")
