@@ -56,7 +56,9 @@ public class ClienteServico {
             cliente.setEstadoCivil(clienteRequest.getEstadoCivil());
             cliente.setSexo(clienteRequest.getSexo());
 
+            System.out.println("Dados do cliente atualizados com sucesso.");
             return ClienteConversor.toResponse(clienteRepositorio.save(cliente));
+
         }
     }
 

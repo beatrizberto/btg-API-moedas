@@ -51,7 +51,6 @@ public class ClienteControlador {
     @PutMapping("/id/{id}")
     public ResponseEntity<ClienteResponse> editarCliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest) {
         try {
-            System.out.println("Dados do cliente atualizados com sucesso.");
             return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
         } catch (ClienteNaoEncontradoException exception) {
             System.out.println(exception.getMessage());
@@ -61,7 +60,7 @@ public class ClienteControlador {
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/id/{id}")
     public ResponseEntity<String> deletarCliente(@PathVariable Integer id) {
         ClienteResponse clienteResponse = clienteServico.buscarPorId(id);
         if (clienteResponse == null) {
