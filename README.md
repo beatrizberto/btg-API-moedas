@@ -57,7 +57,8 @@ DELETE /ordens-compra/{id}: Cancela uma ordem de compra existente.
 
 ## Protótipo de Tela
 
-Confira o protótipo de tela do projeto no [(https://www.figma.com/proto/CDe7zjO19vEQkhBEoW4jEN/Untitled?type=design&node-id=3-2&t=q8tCrvRvqS9LRfJ2-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=3%3A2)]. 
+[Confira o protótipo de tela do projeto](https://www.figma.com/proto/CDe7zjO19vEQkhBEoW4jEN/Untitled?type=design&node-id=3-2&t=q8tCrvRvqS9LRfJ2-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=3%3A2)
+
 
 ## Participantes
 
