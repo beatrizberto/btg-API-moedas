@@ -50,9 +50,17 @@ public class ClienteControlador {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/id/{id}")
     public ResponseEntity<ClienteResponse> editarCliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest) {
-        return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
+        try {
+            System.out.println("Dados do cliente atualizados com sucesso.");
+            return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
+        } catch (ClienteNaoEncontradoException exception) {
+            System.out.println(exception.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+
+
     }
 
     @DeleteMapping("/{id}")
