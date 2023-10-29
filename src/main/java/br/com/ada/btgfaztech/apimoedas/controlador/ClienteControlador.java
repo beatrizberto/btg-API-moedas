@@ -3,9 +3,7 @@ package br.com.ada.btgfaztech.apimoedas.controlador;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteRequest;
 import br.com.ada.btgfaztech.apimoedas.controlador.dto.ClienteResponse;
 import br.com.ada.btgfaztech.apimoedas.controlador.exception.ClienteNaoEncontradoException;
-import br.com.ada.btgfaztech.apimoedas.modelo.Cliente;
 import br.com.ada.btgfaztech.apimoedas.servico.ClienteServico;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,9 +48,17 @@ public class ClienteControlador {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/id/{id}")
     public ResponseEntity<ClienteResponse> editarCliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest) {
-        return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
+        try {
+            System.out.println("Dados do cliente atualizados com sucesso.");
+            return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
+        } catch (ClienteNaoEncontradoException exception) {
+            System.out.println(exception.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+
+
     }
 
     @DeleteMapping("/{id}")

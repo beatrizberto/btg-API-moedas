@@ -45,9 +45,19 @@ public class ClienteServico {
 
 
     public ClienteResponse editarCliente(Integer id, ClienteRequest clienteRequest) {
-        Cliente cliente = ClienteConversor.toEntity(clienteRequest);
-        cliente.setId(id);
-        return ClienteConversor.toResponse(clienteRepositorio.save(cliente));
+        Optional<Cliente> clienteParaAlterar = clienteRepositorio.findById(id);
+
+        if (clienteParaAlterar.isEmpty()) {
+            throw new ClienteNaoEncontradoException("Cliente não encontrado para o ID: " + id);
+        } else {
+            Cliente cliente = clienteParaAlterar.get();
+            cliente.setNome(clienteRequest.getNome());
+            cliente.setDataNascimento(clienteRequest.getDataNascimento());
+            cliente.setEstadoCivil(clienteRequest.getEstadoCivil());
+            cliente.setSexo(clienteRequest.getSexo());
+
+            return ClienteConversor.toResponse(clienteRepositorio.save(cliente));
+        }
     }
 
     public void deletarCliente(Integer id) {
