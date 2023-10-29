@@ -43,19 +43,21 @@ GET /cliente/cpf/{cpf}: Obtém informações do cliente com base no CPF.
 
 GET /cliente/id/{id}: Obtém informações do cliente com base no Id.
 
-PUT /cliente/{id}: Atualiza informações do cliente existente.
+PUT /cliente/id/{id}: Atualiza informações do cliente existente.
 
-DELETE /cliente/{id}: Exclui um cliente existente.
+DELETE /cliente/id/{id}: Exclui um cliente existente.
 
 POST /ordens-compra: Cria uma nova ordem de compra de moeda estrangeira.
 
 GET /ordens-compra/{id}: Obtém informações do cliente com base no ID.
 
+PUT /ordens-compra/{id}: Atualiza informações de uma ordem de compra.
+
 DELETE /ordens-compra/{id}: Cancela uma ordem de compra existente.
 
 ## Protótipo de Tela
 
-Confira o protótipo de tela do projeto no [Link]. 
+Confira o protótipo de tela do projeto no [(https://www.figma.com/proto/CDe7zjO19vEQkhBEoW4jEN/Untitled?type=design&node-id=3-2&t=q8tCrvRvqS9LRfJ2-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=3%3A2)]. 
 
 ## Participantes
 
