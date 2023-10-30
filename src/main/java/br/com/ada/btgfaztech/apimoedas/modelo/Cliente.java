@@ -11,7 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 public class Cliente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,8 +23,6 @@ public class Cliente {
     private String estadoCivil;
     private String sexo;
 
-    //cliente pode ter várias ordens de compra
     @OneToMany(mappedBy = "cliente")
     private List<OrdemCompra> ordensCompra;
-
 }

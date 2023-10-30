@@ -18,7 +18,6 @@ public class ClienteConversor {
         cliente.setSexo(cliente.getSexo());
 
         return cliente;
-
     }
 
     public static ClienteResponse toResponse(Cliente cliente) {
@@ -36,12 +35,8 @@ public class ClienteConversor {
         for (Cliente cliente : clientes) {
             ClienteResponse clienteResponse = ClienteConversor.toResponse(cliente);
             clienteResponses.add(clienteResponse);
-
         }
-//TODO: tentar fazer esse processo com stream
 
         return clienteResponses;
     }
-
-
 }

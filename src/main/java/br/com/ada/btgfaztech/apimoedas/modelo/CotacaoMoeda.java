@@ -1,7 +1,5 @@
 package br.com.ada.btgfaztech.apimoedas.modelo;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
@@ -20,5 +18,4 @@ public class CotacaoMoeda {
     private BigDecimal ask;
     private String timestamp;
     private String create_date;
-
 }

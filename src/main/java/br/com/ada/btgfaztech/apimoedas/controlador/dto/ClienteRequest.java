@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 public class ClienteRequest {
-
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;

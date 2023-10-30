@@ -10,9 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClienteResponse {
-
     private Integer id;
     private String nome;
     private String cpf;
-
 }

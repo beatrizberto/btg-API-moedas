@@ -16,7 +16,6 @@ public class OrdemCompra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //muitas ordens de compra pertencem a um cliente
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;

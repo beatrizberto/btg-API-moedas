@@ -13,15 +13,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrdemCompraResponse {
-
     private Integer       idCompra;
     private Integer       idCliente;
     private String        cpfCliente;
     private LocalDateTime dataSolicitacao;
     private String        tipoMoeda;
-    private BigDecimal valorMoedaEstrangeira;
+    private BigDecimal    valorMoedaEstrangeira;
     private BigDecimal    valorCotacao;
     private BigDecimal    valorTotalOperacao;
     private String        numeroAgenciaRetirada;
-
 }

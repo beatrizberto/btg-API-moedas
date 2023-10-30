@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 public class  OrdemCompraRequest {
-
     private String     cpf;
     private String     tipoMoeda;
     private BigDecimal valorMoedaEstrangeira;
